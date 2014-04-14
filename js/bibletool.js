@@ -26,7 +26,7 @@ Array.prototype.findIndex = function(value){
   var ctr = "";
   for (var i=0; i < this.length; i++) {
     // use === to check for Matches. ie., identical (===), ;
-    if (this[i] == value) {
+    if (this[i].toLowerCase() == value.toLowerCase()) {
       return i;
     }
   }
