@@ -201,6 +201,19 @@ var Navigation = {
     var actualkey = String.fromCharCode(unicode);
     if (actualkey == 'r') {
       Navigation.toggleRedDiv();
+    } else if ((actualkey == 'g' || actualkey == 'G')) {
+  		var part = prompt("请输入要查询的书卷和章节（以空格分隔，如约 3）");
+  		var part_arr = part.split(" ");
+  		var book = part_arr[0];
+  		book = /[\u4e00-\u9fa5]+$/.test(book) ? book2CNabbrev.findIndex(book) : book2ENabbrev.findIndex(book);
+  		var chapter_verse = part_arr[1];
+  		var chapter_verse_arr = chapter_verse.split(":")
+  		var chapter = chapter_verse_arr[0];
+  		var chapters = chaptersArray[book];
+  		window.location.hash = Navigation.selectedVersion() +
+  		  ':' + book + ':' + 
+  		  ( chapter <= chapters ? chapter : '1');
+	  
     } else if ((actualkey == 'j' || actualkey == 'd')) {
       Navigation.rightArrow();
     } else if (actualkey == 'n' || actualkey == 'x') {
